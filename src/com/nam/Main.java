@@ -1,10 +1,6 @@
 package com.nam;
 
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 
 //import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,7 +75,6 @@ public class Main {
         public void init(GameContainer gc) throws SlickException{
             //
             llg.fine("INIT");
-
             log.info("init");
 
         }
@@ -87,10 +82,38 @@ public class Main {
         @Override
         public void update(GameContainer gc, int i) throws SlickException{
             //
-            llg.fine("UPDATE");
+/*            llg.fine("UPDATE");
+            log.info("update");*/
 
-            log.info("update");
+            //if (gc.getInput().consumed());
 
+           /* log.info("MouseX " + gc.getInput().getMouseX());
+            log.info("Absolute MouseX " + gc.getInput().getAbsoluteMouseX());
+            log.info("MouseY " + gc.getInput().getMouseY());
+            log.info("Absolute MouseY " + gc.getInput().getAbsoluteMouseY());*/
+
+            if (gc.getInput().isKeyDown(Input.KEY_0)){
+                log.info("KeyDown 0 ");
+            }
+
+
+            if (gc.getInput().isKeyPressed(Input.KEY_ENTER)){
+                log.info("KeyPressed ENTER ");
+            }
+
+            if (gc.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+                log.info("MouseButtonDown LEFT");
+            }
+
+            if (gc.getInput().isMousePressed(Input.MOUSE_MIDDLE_BUTTON)){
+                log.info("MousePressed MIDDLE");
+            }
+
+        }
+
+        @Override
+        public void mouseWheelMoved(int change){
+            log.info("Mouse Whell Change = " + change);
         }
 
         @Override
