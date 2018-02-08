@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="library" name="linux" level="project" />
+    <orderEntry type="library" name="jul-to-slf4j-1.7.25" level="project" />
   </component>
 </module>
