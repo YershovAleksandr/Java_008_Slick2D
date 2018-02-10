@@ -15,8 +15,18 @@ public class ParalaxLayer{
     private String mPathimg;
     private float mX;
     private float mY;
+
+    /*For second image*/
+    private float mXX;
+    private float mYY;
+
     private float mSpeed;
     private float mScale;
+
+    /*window where we show our paralax */
+    private float mX0;
+    private float mX1;
+
     private int mFilter;
     private boolean mLtR;   //Left ot Right
 
@@ -24,7 +34,7 @@ public class ParalaxLayer{
         //
     }
 
-    public void ParalaxLayer2(String pathimg, float x, float y, float speed, float scale, int filter){
+    public void ParalaxLayer2(String pathimg, float x, float y, float speed, float scale, int filter, float x0, float x1){
         log = LoggerFactory.getLogger(Paralax.class);
 
         mPathimg = pathimg;
@@ -32,6 +42,13 @@ public class ParalaxLayer{
         mScale = scale;
         mX = x;
         mY = y;
+
+        mX0 = x0;
+        mX1 = x1;
+
+        mXX = mX + mX1;
+        mYY = mY;
+
         mSpeed = speed;
         mLtR = true;
 
@@ -52,20 +69,20 @@ public class ParalaxLayer{
         mLtR = ltr;
     }
 
-    //public void update(GameContainer gc, int i){
     public void update(){
         if (mLtR){
             mX += mSpeed;
+            mXX += mSpeed;
         }
         else{
             mX -= mSpeed;
+            mXX -= mSpeed;
         }
     }
 
     public void render(GameContainer gc, Graphics g){
-        //gc.getGraphics().
         mImg.draw(mX, mY, mScale);
-        //g.drawImage(mImg, mX, mY);
+        mImg.draw(mXX, mYY, mScale);
     }
 
 }

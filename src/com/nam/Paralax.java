@@ -1,22 +1,12 @@
 package com.nam;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
+import org.newdawn.slick.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Paralax {
 
     Logger log;
-
-    Image mBg;
-    Image mStarsPalnet;
-    Image mFarPalnet;
-    Image mBigPalnet;
-    Image mRingPalnet;
-
 
     int x;
     int y;
@@ -27,6 +17,12 @@ public class Paralax {
     int farx;
     int bigx;
     int ringx;
+
+    float x0;
+    float x1;
+
+    float y0;
+    float y1;
 
     private final int N = 5;
     private ParalaxLayer[] mLayers;
@@ -44,6 +40,12 @@ public class Paralax {
 
         mLayers = new ParalaxLayer[N];
 
+        scale = 2.f;
+        x0 = 100.f;
+        y0 = 100.f;
+
+        x1 = 270.f*scale;
+        y1 = 160.f*scale;
 
 
     }
@@ -52,43 +54,15 @@ public class Paralax {
 
         for (int i = 0; i < N; i++){
             mLayers[i] = new ParalaxLayer();
-            mLayers[i].ParalaxLayer2(mImgPath[i], 100.f, 100.f, 0.5f * i, 2.f, Image.FILTER_NEAREST);
+            mLayers[i].ParalaxLayer2(mImgPath[i],
+                    x0,
+                    y0,
+                    0.5f * i,
+                    scale,
+                    Image.FILTER_NEAREST,
+                    x0,
+                    x1);
         }
-
-        //int filter = Image.FILTER_LINEAR;
-/*        int filter = Image.FILTER_NEAREST;
-
-
-        try{
-            mBg = new Image("res/art/parallax-space-backgound.png");
-            mBg.setFilter(filter);
-            mStarsPalnet = new Image("res/art/parallax-space-stars.png");
-            mStarsPalnet.setFilter(filter);
-            mFarPalnet = new Image("res/art/parallax-space-far-planets.png");
-            mFarPalnet.setFilter(filter);
-            mBigPalnet = new Image("res/art/parallax-space-big-planet.png");
-            mBigPalnet.setFilter(filter);
-            mRingPalnet = new Image("res/art/parallax-space-ring-planet.png");
-            mRingPalnet.setFilter(filter);
-        }
-        catch (Exception ex){
-            log.error("Wtf", ex);
-        }
-
-        x = 100;
-        y = 100;
-
-        scale = 2.0f;
-
-        reset();
-*/
-    }
-
-    private void reset(){
-        starsx = x;
-        farx = x;
-        bigx = x;
-        ringx = x;
     }
 
     public void update(GameContainer gc, int ii){
@@ -107,21 +81,6 @@ public class Paralax {
             }
         }
 
-
-        /*for (int ii = 0; ii < N; ii ++){
-            mLayers[ii].update(gc, i);
-        }*/
-
-        //
-      /*  starsx++;
-        farx += 2;
-        bigx += 3;
-        ringx += 4;
-
-        //mBg.getWidth();
-        if (starsx > gc.getWidth()){
-            reset();
-        }*/
     }
 
     public void render(GameContainer gc, Graphics g){
@@ -130,11 +89,8 @@ public class Paralax {
             mLayers[i].render(gc, g);
         }
 
-       /* mBg.draw(x, y, scale);
-        mStarsPalnet.draw(starsx, y, scale);
-        mFarPalnet.draw(farx, y, scale);
-        mBigPalnet.draw(bigx, y, scale);
-        mRingPalnet.draw(ringx, y, scale);*/
+        g.setColor(Color.red);
+        g.drawRect(x0, y0, x1, y1);
     }
 
     public void keyPressed(int key, char c){
