@@ -12,11 +12,16 @@ public class X3 extends BasicGame{
 
     private Image img;
 
+    private Paralax prlx;
+
 
     public X3(String gamename){
         super(gamename);
 
         log.info("X3");
+
+        prlx = new Paralax();
+
     }
 
     @Override
@@ -30,6 +35,8 @@ public class X3 extends BasicGame{
             log.error("WTF", ex);
         }
 
+        prlx.init();
+
     }
 
     @Override
@@ -39,6 +46,9 @@ public class X3 extends BasicGame{
 
             flag = false;
         }
+
+        prlx.update(gc, i);
+
     }
 
     @Override
@@ -49,9 +59,15 @@ public class X3 extends BasicGame{
             flag2 = false;
         }
 
-        img.draw(0,0, 1.0f);
+        //img.draw(0,0, 1.0f);
+
+        prlx.render(gc, g);
 
     }
 
+    @Override
+    public void keyPressed(int key, char c){
+        prlx.keyPressed(key, c);
+    }
 
 }
