@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import java.util.logging.LogManager;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
+
 public class Main {
 
     public static org.slf4j.Logger log = LoggerFactory.getLogger(Main.class);
@@ -39,7 +40,9 @@ public class Main {
 
         try{
             Main mn = new Main();
-            mn.StartSlick();
+            //mn.StartSlick();
+
+            mn.StartSlick2();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -61,6 +64,22 @@ public class Main {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void StartSlick2() throws Exception{
+        try{
+            AppGameContainer appgc;
+
+            appgc = new AppGameContainer(new X3("Fuck"));
+            appgc.setDisplayMode(1024, 768, false);
+            appgc.start();
+        }
+        catch (SlickException ex){
+            log.error("WTF", ex);
+        }
+
+
+    }
+
 
     public class GameApp extends BasicGame{
 
