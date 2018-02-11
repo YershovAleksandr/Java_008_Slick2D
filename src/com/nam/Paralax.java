@@ -44,7 +44,7 @@ public class Paralax {
         x0 = 100.f;
         y0 = 100.f;
 
-        x1 = 270.f*scale;
+        x1 = 272.f*scale;
         y1 = 160.f*scale;
 
 
